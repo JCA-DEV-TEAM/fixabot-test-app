@@ -6,8 +6,7 @@ export default function Counter() {
   const [count, setCount] = useState(0);
 
   const increment = () => {
-    // BUG: should add 1 each click, but accidentally adds 2.
-    setCount(c => c + 2);
+    setCount(c => c + 1);
   };
 
   const reset = () => setCount(0);
