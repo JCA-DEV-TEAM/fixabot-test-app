@@ -17,8 +17,7 @@ export default function DataLoader() {
     setError('');
     setData(null);
     try {
-      // BUG: typo in the URL — endpoint is /api/data not /api/dat
-      const res = await fetch('/api/dat');
+      const res = await fetch('/api/data');
       if (!res.ok) {
         throw new Error(`API returned ${res.status} ${res.statusText}`);
       }
