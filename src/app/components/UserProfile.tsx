@@ -11,15 +11,18 @@ interface User {
 const SAMPLE_USER: User = { id: 42 };
 
 function renderProfileName(user: User): string {
-  // Bug: non-null assertion lies to the compiler — at runtime profile is undefined.
-  return `Hello, ${user.profile!.name}!`;
+  // Fixed: Check if profile exists before accessing name
+  if (!user.profile) {
+    return `Hello, Guest (User #${user.id})!`;
+  }
+  return `Hello, ${user.profile.name}!`;
 }
 
 export default function UserProfile() {
   const [greeting, setGreeting] = useState<string>('');
 
   const handleClick = () => {
-    // This will throw at runtime: TypeError: Cannot read properties of undefined (reading 'name')
+    // This will now handle the case where profile is undefined
     setGreeting(renderProfileName(SAMPLE_USER));
   };
 
