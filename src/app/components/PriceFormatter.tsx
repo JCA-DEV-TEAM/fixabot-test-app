@@ -11,8 +11,8 @@ const PRICES: any[] = JSON.parse(`[
 ]`);
 
 function formatPrice(price: number): string {
-  // BUG: callers pass a string, so price.toFixed throws at runtime.
-  return `$${price.toFixed(2)}`;
+  // FIX: Convert to number first to handle string inputs
+  return `$${Number(price).toFixed(2)}`;
 }
 
 export default function PriceFormatter() {
